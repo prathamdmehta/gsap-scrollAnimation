@@ -8,11 +8,13 @@ function loadSVG () {
     })
 }
 loadSVG();
+
 function setAnimationScroll () {
     gsap.registerPlugin(ScrollTrigger);
     let runAnimation = gsap.timeline({
         scrollTrigger: {
             trigger: "#bg_city",
+            scroller: "[data-scroll-container]",
             start: "top top",
             end: "+=1000",
             scrub: true,
@@ -59,3 +61,28 @@ function setAnimationScroll () {
         })
     ]);
 }
+
+const scroll = new LocomotiveScroll({
+    el: document.querySelector('[data-scroll-container]'),
+    smooth: true
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Update ScrollTrigger on Locomotive Scroll events
+scroll.on('scroll', ScrollTrigger.update);
+
+// Set up ScrollTrigger proxy for Locomotive Scroll
+ScrollTrigger.scrollerProxy('[data-scroll-container]', {
+    scrollTop(value) {
+        return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
+    },
+    getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+    },
+    pinType: document.querySelector('[data-scroll-container]').style.transform ? 'transform' : 'fixed'
+});
+
+// Refresh ScrollTrigger and update Locomotive Scroll
+ScrollTrigger.addEventListener('refresh', () => scroll.update());
+ScrollTrigger.refresh();
