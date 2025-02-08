@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Locomotive Scroll CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
 </head>
+
 
 <body>
     <header>
-<!--         <div class="logo"><img src="img/logoweb.png" alt=""></div> -->
         <nav>
             <ul>
                 <li class="active">Home</li>
@@ -19,6 +21,8 @@
             </ul>
         </nav>
     </header>
+
+<div data-scroll-container>
     <div class="banner">
         <div id="bg_city"></div>
         <div class="content">
@@ -90,12 +94,15 @@
             evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
         </div>
     </main>
+</div>
 
-    
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+
 <script src="app.js"></script>
 
 </html>
